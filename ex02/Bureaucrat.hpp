@@ -1,9 +1,12 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
+#include "AForm.hpp"
 #include <iostream>
 #include <stdexcept>
 #include <string>
+
+class AForm;
 
 class Bureaucrat {
   private:
@@ -23,6 +26,8 @@ class Bureaucrat {
 
     void increment();
     void decrement();
+
+    void executeForm(AForm const &form);
 
     // Exceptions
     class GradeTooLowException : public std::exception {

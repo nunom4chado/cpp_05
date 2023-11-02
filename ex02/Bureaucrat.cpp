@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "colors.hpp"
 
 Bureaucrat::Bureaucrat() { throw Bureaucrat::GradeTooLowException(); }
 
@@ -38,6 +39,17 @@ void Bureaucrat::decrement() {
         throw Bureaucrat::GradeTooLowException();
 
     this->_grade++;
+}
+
+void Bureaucrat::executeForm(AForm const &form) {
+    try {
+        form.execute(*this);
+        std::cout << GREEN << this->_name << " executed " << form.getName()
+                  << RESET << std::endl;
+    } catch (std::exception &e) {
+        std::cout << RED << "Failed to execute form because " << e.what()
+                  << RESET << std::endl;
+    }
 }
 
 /* ------------------------------- Exceptions ------------------------------- */
